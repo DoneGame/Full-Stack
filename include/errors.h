@@ -7,6 +7,8 @@ typedef enum ERROR_t {
     MEM_ALLOC_ERR = 2,
     MEM_REALLOC_ERR = 3,
     INDEX_OUT_OF_RANGE = 4,
+    INCORRECT_STACK = 5,
+    POP_ON_EMPTY_STK = 6,
 } ERROR_t;
 
 #endif //ERRORS_H
