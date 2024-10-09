@@ -32,6 +32,71 @@ int main() {
         stack_dump (stk, err);
         return err;
     }
+    if ((err = stack_push(&stk, 40)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    if ((err = stack_push(&stk, 50)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    if ((err = stack_push(&stk, 60)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    if ((err = stack_push(&stk, 70)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+
+    stack_dump (stk, NO_ERRORS);
+
+    printf ("# Pop some elements\n");
+    StackElem_t x = 0;
+    if ((err = stack_pop(&stk, &x)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    printf ("Poped: %d\n", x);
+    if ((err = stack_pop(&stk, &x)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    printf ("Poped: %d\n", x);
+    if ((err = stack_pop(&stk, &x)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    printf ("Poped: %d\n", x);
+    if ((err = stack_pop(&stk, &x)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    printf ("Poped: %d\n", x);
+    if ((err = stack_pop(&stk, &x)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    printf ("Poped: %d\n", x);
+    if ((err = stack_pop(&stk, &x)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    printf ("Poped: %d\n", x);
+
+    printf ("# Pushing some elements\n");
+    if ((err = stack_push(&stk, 30)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    if ((err = stack_push(&stk, 90)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
+    if ((err = stack_push(&stk, 180)) != NO_ERRORS) {
+        stack_dump (stk, err);
+        return err;
+    }
 
     stack_dump (stk, NO_ERRORS);
 

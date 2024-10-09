@@ -62,6 +62,43 @@ ERROR_t stack_push (Stack_t *stk, StackElem_t x) {
     return NO_ERRORS;
 }
 
+ERROR_t stack_pop (Stack_t *stk, StackElem_t *x) {
+    if (! stk)
+        return INCORRECT_POINTER;
+    if (! x)
+        return INCORRECT_POINTER;
+
+    if (increase_capacity(increase_capacity(stk->size)) == stk->capacity) {
+        size_t new_size = decrease_capacity (stk->capacity);
+
+        #ifndef NDEBUG
+            printf ("Trying to reallocate stack\n");
+        #endif //NDEBUG
+
+        StackElem_t *array = (StackElem_t *) realloc (stk->data, new_size * sizeof(StackElem_t));
+
+        #ifndef NDEBUG
+            printf ("Stack reallocated at adress %lu, new size = %lu\n", (unsigned long) array, (unsigned long) new_size);
+        #endif //NDEBUG
+
+        if (! array)
+            return MEM_ALLOC_ERR;
+
+        stk->capacity = new_size;
+        stk->data = array;
+    }
+
+    if (! stk->data)
+        return INCORRECT_POINTER;
+    if (stk->size >= stk->capacity)
+        return INDEX_OUT_OF_RANGE;
+
+    stk->size--;
+    *x = stk->data[stk->size];
+
+    return NO_ERRORS;
+}
+
 void stack_dump (Stack_t stk, ERROR_t program_err) {
     if (program_err != NO_ERRORS) {
         printf ("Program error: ");
@@ -90,13 +127,14 @@ void stack_dump (Stack_t stk, ERROR_t program_err) {
             if (i == stk.size - 1)
                 printf ("| ");
         }
+        printf ("\n");
     }
 }
 
 static size_t increase_capacity (size_t current_capacity) {
-    return 3 * current_capacity;
+    return 2 * current_capacity;
 }
 
 static size_t decrease_capacity (size_t current_capacity) {
-    return current_capacity / 3;
+    return current_capacity / 2;
 }

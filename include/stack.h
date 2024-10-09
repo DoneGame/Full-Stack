@@ -16,9 +16,10 @@ struct Stack_t
 };
 
 
-ERROR_t       stack_create (Stack_t *stk);
-ERROR_t       stack_push (Stack_t *stk, StackElem_t x);
-void          stack_dump (Stack_t stk, ERROR_t program_err);
+ERROR_t       stack_create      (Stack_t *stk);
+ERROR_t       stack_push        (Stack_t *stk, StackElem_t x);
+ERROR_t       stack_pop         (Stack_t *stk, StackElem_t *x);
+void          stack_dump        (Stack_t stk, ERROR_t program_err);
 static size_t increase_capacity (size_t current_capacity);
 static size_t decrease_capacity (size_t current_capacity);
 
